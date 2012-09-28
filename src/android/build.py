@@ -151,7 +151,6 @@ class PlatformTarget(object):
             $ aapt package -m -J gen/ -M AndroidManifest.xml -S res/
                 -I android.jar
         """
-        
         mkdir(output_dir)
         log.info(self.aapt(
             command='package',
@@ -311,7 +310,7 @@ class PlatformTarget(object):
         if not output:
             _, output = tempfile.mkstemp(suffix='.ap_')
         output = path.abspath(output)
-        print("\n -- %s -- \n" %resource_dir)
+        
         kwargs = dict(
             command='package',
             manifest=manifest,
