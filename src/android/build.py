@@ -96,13 +96,13 @@ class PlatformTarget(object):
         # in ``com.android.sdklib.PlatformTarget`` and
         # ``com.android.sdklib.SdkConstants``.
         paths = dict(
-            aapt =path.join(sdk_dir, 'platform-tools',
+            aapt =path.join(sdk_dir, 'build-tools/17.0.0',
                 'aapt.exe' if sys.platform=='win32' else 'aapt'),
-            aidl = path.join(sdk_dir, 'platform-tools',
+            aidl = path.join(sdk_dir, 'build-tools/17.0.0',
                 'aidl.exe' if sys.platform=='win32' else 'aidl'),
-            llvmrs = path.join(sdk_dir, 'platform-tools',
+            llvmrs = path.join(sdk_dir, 'build-tools/17.0.0',
                 'llvm-rs-cc.exe' if sys.platform=='win32' else 'llvm-rs-cc'),
-            dx = path.join(sdk_dir, 'platform-tools',
+            dx = path.join(sdk_dir, 'build-tools/17.0.0',
                 'dx.bat' if sys.platform=='win32' else 'dx'),
             apkbuilder = path.join(sdk_dir, 'tools',
                 'apkbuilder.bat' if sys.platform=='win32' else 'apkbuilder'),
@@ -268,7 +268,7 @@ class PlatformTarget(object):
         For directories that you do not specifiy a tenmporary directory
         will be used and deleted after the build.
         """
-        
+
         to_delete = []
         if not source_gen_dir:
             source_gen_dir = tempfile.mkdtemp()
@@ -309,7 +309,7 @@ class PlatformTarget(object):
         if not output:
             _, output = tempfile.mkstemp(suffix='.ap_')
         output = path.abspath(output)
-        
+
         kwargs = dict(
             command='package',
             manifest=manifest,
@@ -526,7 +526,7 @@ class AndroidProject(object):
             fs.pop()
 
             workspace_path = "/"
-            
+
             for fn in fs:
                 workspace_path = os.path.join(workspace_path,fn)
 

@@ -72,7 +72,7 @@ class Program(object):
         along to their caller.
         """
         cmdline = " ".join([self.executable] + arguments)
-        
+
         process = subprocess.Popen([self.executable] + arguments,
                                    stderr=subprocess.PIPE,
                                    stdout=subprocess.PIPE)
@@ -125,7 +125,7 @@ class Aapt(Program):
         args = [command]
         self.extend_args(args, ['-m'], make_dirs)
         self.extend_args(args, ['-M', manifest])
-        
+
         for item in resource_dir:
             self.extend_args(args, ['-S', item])
 
@@ -144,7 +144,7 @@ class Aapt(Program):
         self.extend_args(args, ['-f'], overwrite)
         self.extend_args(args, ["--auto-add-overlay"])
         self.extend_args(args, ["--no-crunch"])
-        
+
         return Program.__call__(self, args)
 
 
@@ -173,11 +173,11 @@ class Aidl(Program):
         self.extend_args(args, ['-o%s' % output_folder], output_folder)
         self.extend_args(args, [aidl_file])
         return Program.__call__(self, args)
-    
+
 class LlvmRs(Program):
     """Interface to the command line llvm renderscript compiler, ``llvm-rs-cc``
     """
-    
+
     def __call__(self, resource_dir, resource_gen_dir, source_files, include_dirs):
         args = []
         for include in include_dirs:
@@ -191,7 +191,7 @@ class LlvmRs(Program):
 class NdkBuild(Program):
     """Interface to the command line c/c++ compiler, ``ndk-build``
     """
-    
+
     def __call__(self, project_path):
         """
         project_path
@@ -199,7 +199,7 @@ class NdkBuild(Program):
         """
         args = []
         self.extend_args(args, ["-C", project_path])
-        
+
         return Program.__call__(self, args)
 
 class NdkClean(Program):
@@ -267,7 +267,7 @@ class Dx(Program):
             Target output file (--output).
         """
         args = ['--dex']
-        
+
         jar_list = []
         for item in files:
             if item.endswith(".jar"):
@@ -325,6 +325,7 @@ class ApkBuilder(Program):
         args = [outputfile]
         args.extend(['-u'])  # unsigned
         self.extend_args(args, ['-f', dex])
+
         for zip in zips:
             args.extend(['-z', zip])
         for source_dir in source_dirs:
