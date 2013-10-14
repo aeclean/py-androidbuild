@@ -3,7 +3,6 @@
 import os
 from setuptools import setup, find_packages
 
-
 # Figure out the version.
 import re
 here = os.path.dirname(os.path.abspath(__file__))
@@ -42,4 +41,9 @@ setup(
     entry_points = """[console_scripts]\npy-androidbuild = android.script:run\n""",
     packages = find_packages('src'),
     package_dir = {'': 'src'},
+    # Include some shell scripts etc. we need to interact with the Android SDK
+    package_data={
+        'android': ['data/*']
+    },
+    include_package_data=True
 )
